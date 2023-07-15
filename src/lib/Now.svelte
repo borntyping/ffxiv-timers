@@ -1,6 +1,6 @@
 <script lang="ts">
   import { DateTime } from "luxon";
-  import { animate } from "./animation";
+  import { animate } from "./utils";
   import Clock from "./Clock.svelte";
 
   function fmt(datetime: DateTime): string {
@@ -15,7 +15,7 @@
   })
 
   function eorzeaTime(datetime: DateTime) {
-    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds)
+    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds).minus({ hours: 1 })
   }
 </script>
 

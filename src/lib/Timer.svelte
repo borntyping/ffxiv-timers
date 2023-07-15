@@ -1,25 +1,30 @@
 <script lang="ts">
   import { DateTime, Duration } from "luxon";
+  import Countdown from "./Countdown.svelte";
   import { animate, recurring } from "./utils";
 
-  export let name: string
-  export let epoch: DateTime
-  export let interval: Duration
+  export type TimerDefinition = {
+    name: string
+    epoch: DateTime
+    interval: Duration
+  }
+
+  export let definition: TimerDefinition
 
   let schedule
   animate(() => {
-    schedule = recurring(epoch, interval)
+    schedule = recurring(definition.epoch, definition.interval)
   })
 </script>
 
 
 <div class="until">
   <div>
-    <strong>{name}</strong> in <span>{schedule.next.toLocal().diffNow().toFormat("d 'days,' h:mm:ss")}</span>.
+    <strong>{definition.name}</strong> in <Countdown duration={schedule.next.toLocal().diffNow()} />.
   </div>
 
   <div>
-    <em>{epoch.toLocal().toLocaleString({
+    <em>{schedule.next.toLocal().toLocaleString({
         weekday: 'long',
         year: 'numeric',
         month: 'long',

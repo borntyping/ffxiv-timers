@@ -17,13 +17,13 @@ export function recurring(epoch: DateTime, interval: Duration): {
   const now = DateTime.utc()
 
   let next = epoch
+  let previous = epoch.minus(interval)
   let intervals = 0
   while (next < now) {
+    previous = next
     next = next.plus(interval)
     intervals = intervals + 1
   }
-
-  const previous = next.plus(interval.negate())
 
   return { next, previous, intervals }
 }

@@ -20,6 +20,7 @@
     "vite": "^4.4.0"
   },
   "dependencies": {
+    "humanize-duration": "^3.29.0",
     "luxon": "^3.3.0"
   }
 }
