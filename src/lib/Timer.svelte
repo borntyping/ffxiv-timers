@@ -7,21 +7,22 @@
   export let definition: TimerDefinition
   export let debug: boolean = false
 
-  let schedule
-  animate(() => {
-    schedule = recurring(definition.epoch, definition.interval)
-  })
-
   function toMeterValue(datetime: DateTime) {
     return Math.round(datetime.toSeconds())
   }
 
-  let min = toMeterValue(schedule.previous)
-  let max = toMeterValue(schedule.next)
-  let low = toMeterValue(definition.calculateLow(schedule.previous, schedule.next))
-  let high = toMeterValue(definition.calculateHigh(schedule.previous, schedule.next))
-  let optimum = toMeterValue(definition.calculateOptimum(schedule.previous, schedule.next))
-  let value = toMeterValue(schedule.now)
+  let schedule
+  let min, max, low, high, optimum, value
+  animate(() => {
+    schedule = recurring(definition.epoch, definition.interval)
+
+    min = toMeterValue(schedule.previous)
+    max = toMeterValue(schedule.next)
+    low = toMeterValue(definition.calculateLow(schedule.previous, schedule.next))
+    high = toMeterValue(definition.calculateHigh(schedule.previous, schedule.next))
+    optimum = toMeterValue(definition.calculateOptimum(schedule.previous, schedule.next))
+    value = toMeterValue(schedule.now)
+  })
 </script>
 
 
