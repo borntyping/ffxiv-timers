@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm ci
-      - run: npm run build
+      - run: npm run build -- --base '/ffxiv-timers/'
       - uses: actions/upload-pages-artifact@v1
         with:
           path: dist/
