@@ -5,15 +5,23 @@
   import { animate, recurring } from "./utils";
 
   export let definition: TimerDefinition
+  export let debug: boolean = false
 
   let schedule
   animate(() => {
     schedule = recurring(definition.epoch, definition.interval)
   })
 
-  function toSeconds(datetime: DateTime) {
+  function toMeterValue(datetime: DateTime) {
     return Math.round(datetime.toSeconds())
   }
+
+  let min = toMeterValue(schedule.previous)
+  let max = toMeterValue(schedule.next)
+  let low = toMeterValue(definition.calculateLow(schedule.previous, schedule.next))
+  let high = toMeterValue(definition.calculateHigh(schedule.previous, schedule.next))
+  let optimum = toMeterValue(definition.calculateOptimum(schedule.previous, schedule.next))
+  let value = toMeterValue(schedule.now)
 </script>
 
 
@@ -35,13 +43,21 @@
     })}</em>
   </div>
 
-  <meter
-    min={toSeconds(schedule.previous)}
-    max={toSeconds(schedule.next)}
-    low={toSeconds(schedule.previous.plus(definition.highLowOffset))}
-    high={toSeconds(schedule.next.minus(definition.highLowOffset))}
-    value={toSeconds(schedule.now)}>
-  </meter>
+  <div>
+    <meter min={min} max={max} low={low} high={high} value={value}></meter>
+  </div>
+
+  {#if debug}
+    <div>
+      <meter min={min} max={max} value={low}>Low</meter>
+    </div>
+    <div>
+      <meter min={min} max={max} value={high}>High</meter>
+    </div>
+    <div>
+      <meter min={min} max={max} value={optimum}>Optimum</meter>
+    </div>
+  {/if}
 </div>
 
 <style>
