@@ -10,6 +10,7 @@ export function animate(callback: () => void, minInterval: number = 1000): void 
 }
 
 export function recurring(epoch: DateTime, interval: Duration): {
+  now: DateTime,
   next: DateTime,
   previous: DateTime,
   intervals: number
@@ -25,5 +26,5 @@ export function recurring(epoch: DateTime, interval: Duration): {
     intervals = intervals + 1
   }
 
-  return { next, previous, intervals }
+  return { now, next, previous, intervals }
 }

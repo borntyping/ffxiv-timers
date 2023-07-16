@@ -10,6 +10,10 @@
   animate(() => {
     schedule = recurring(definition.epoch, definition.interval)
   })
+
+  function toSeconds(datetime: DateTime) {
+    return Math.round(datetime.toSeconds())
+  }
 </script>
 
 
@@ -31,12 +35,21 @@
     })}</em>
   </div>
 
-
-  <progress value={Math.round(DateTime.now().diff(schedule.previous).as('seconds'))} max={Math.round(schedule.next.diff(schedule.previous).as('seconds'))}></progress>
+  <meter
+    min={toSeconds(schedule.previous)}
+    max={toSeconds(schedule.next)}
+    low={toSeconds(schedule.previous.plus(definition.highLowOffset))}
+    high={toSeconds(schedule.next.minus(definition.highLowOffset))}
+    value={toSeconds(schedule.now)}>
+  </meter>
 </div>
 
 <style>
     .until {
         margin: 1em;
+    }
+
+    meter {
+        width: 15em;
     }
 </style>

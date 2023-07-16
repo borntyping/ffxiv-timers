@@ -8,21 +8,25 @@
       name: "Weekly Reset",
       epoch: DateTime.utc().startOf('week').set({ weekday: 1, hour: 8 }),
       interval: Duration.fromObject({ weeks: 1 }),
+      highLowOffset: Duration.fromObject({ days: 1 }),
     },
     {
       name: "Daily Reset",
       epoch: DateTime.utc().startOf('day').set({ hour: 15 }),
       interval: Duration.fromObject({ day: 1 }),
+      highLowOffset: Duration.fromObject({ hours: 1 }),
     },
     {
       name: "Daily Reset (Grand Companies)",
       epoch: DateTime.utc().startOf('day').set({ hour: 20 }),
       interval: Duration.fromObject({ day: 1 }),
+      highLowOffset: Duration.fromObject({ hours: 1 }),
     },
     {
       name: "Ocean fishing",
       epoch: DateTime.utc().startOf('day').set({ hour: 0 }),
       interval: Duration.fromObject({ hours: 1 }),
+      highLowOffset: Duration.fromObject({ hours: 1 }),
     }
   ]
 </script>
