@@ -1,7 +1,7 @@
 <script lang="ts">
   import { DateTime, Duration } from "luxon";
   import Timer from "./Timer.svelte";
-  import type TimerDefinition from './Timer.svelte'
+  import type { TimerDefinition } from './types'
 
   const timers: TimerDefinition[] = [
     {

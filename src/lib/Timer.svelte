@@ -1,13 +1,8 @@
 <script lang="ts">
-  import { DateTime, Duration } from "luxon";
+  import { DateTime } from "luxon";
   import Countdown from "./Countdown.svelte";
+  import type { TimerDefinition } from "./types";
   import { animate, recurring } from "./utils";
-
-  export type TimerDefinition = {
-    name: string
-    epoch: DateTime
-    interval: Duration
-  }
 
   export let definition: TimerDefinition
 
