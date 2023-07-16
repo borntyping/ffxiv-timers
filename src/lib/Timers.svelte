@@ -6,7 +6,7 @@
   const timers: TimerDefinition[] = [
     {
       name: "Weekly Reset",
-      epoch: DateTime.utc().startOf('week').set({ weekday: 1, hour: 8 }),
+      epoch: DateTime.utc().startOf('week').set({ weekday: 2, hour: 8 }),
       interval: Duration.fromObject({ weeks: 1 }),
       calculateLow: (min, max) => min.plus({ days: 3.5 }),
       calculateHigh: (min, max) => max.minus({ days: 1 }),
