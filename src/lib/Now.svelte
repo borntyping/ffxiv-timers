@@ -15,7 +15,7 @@
   })
 
   function eorzeaTime(datetime: DateTime) {
-    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds)
+    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds).minus({ hours: 1 })
   }
 </script>
 
