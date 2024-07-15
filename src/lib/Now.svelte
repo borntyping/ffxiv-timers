@@ -15,7 +15,7 @@
   })
 
   function eorzeaTime(datetime: DateTime) {
-    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds).minus({ hours: 1 })
+    return DateTime.fromSeconds(datetime.toSeconds() * eorzeaMultiplierSeconds)
   }
 </script>
 
@@ -30,7 +30,10 @@
     Local time: {fmt(now.toLocal())}
   </div>
   <div>
-    Eorzea time: {eorzeaTime(now).toFormat("hh:mm:ss 'ET'")}
+    Eorzea time?: {eorzeaTime(now).toFormat("hh:mm:ss 'ET'")}
+  </div>
+  <div>
+    Eorzea time?: {eorzeaTime(now).minus({ hours: 1 }).toFormat("hh:mm:ss 'ET'")}
   </div>
 </div>
 
