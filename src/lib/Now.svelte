@@ -32,9 +32,6 @@
   <div>
     Eorzea time?: {eorzeaTime(now).toFormat("hh:mm:ss 'ET'")}
   </div>
-  <div>
-    Eorzea time?: {eorzeaTime(now).minus({ hours: 1 }).toFormat("hh:mm:ss 'ET'")}
-  </div>
 </div>
 
 <style>
